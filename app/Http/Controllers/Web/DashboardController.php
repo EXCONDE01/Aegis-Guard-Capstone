@@ -55,4 +55,18 @@ class DashboardController extends Controller
         // Redirect back with a success message
         return redirect('/contacts')->with('success', 'Emergency contact added successfully!');
     }
+    public function manageNodes()
+    {
+        $nodes = Node::all();
+        
+        // Mock data for wireframe metrics (In production, pull from server/OPNsense API)
+        $systemMetrics = [
+            'cpu_load' => '12%',
+            'ram_usage' => '2.4 GB',
+            'uptime' => '84%',
+            'active_nodes' => $nodes->where('status', 'ONLINE')->count() . ' / ' . $nodes->count()
+        ];
+
+        return view('nodes', compact('nodes', 'systemMetrics'));
+    }
 }

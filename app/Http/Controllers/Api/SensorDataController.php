@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Node;
 use App\Models\EnvironmentalLog;
+// 1. New imports for the Alerting System
+use App\Models\AlertContact;
+use Twilio\Rest\Client;
 
 class SensorDataController extends Controller
 {
@@ -19,14 +22,14 @@ class SensorDataController extends Controller
             'water_level' => 'nullable|numeric',
         ]);
 
-        // 2. Find the Node in the database (or fail if it doesn't exist)
+        // 2. Find the Node in the database
         $node = Node::where('hardware_id', $validated['hardware_id'])->first();
 
         if (!$node) {
             return response()->json(['message' => 'Node not recognized.'], 404);
         }
 
-        // 3. Simple Threshold Logic (You can adjust these values later)
+        // 3. Threshold Logic
         $status = 'SAFE';
         $hazardType = null;
 
@@ -41,7 +44,7 @@ class SensorDataController extends Controller
             $hazardType = 'High Temperature';
         }
 
-        // 4. Save the reading to the database
+        // 4. Save the reading
         $log = EnvironmentalLog::create([
             'node_id' => $node->id,
             'temperature' => $validated['temperature'],
@@ -49,15 +52,44 @@ class SensorDataController extends Controller
             'water_level' => $validated['water_level'],
             'status' => $status,
             'hazard_type' => $hazardType,
-            'alert_dispatched' => false // We will handle SMS dispatching later
         ]);
 
-        // Update the Node's last ping time
+        // 5. Trigger SMS Alerts if the status is CRITICAL
+        if ($status === 'CRITICAL') {
+            $this->dispatchEmergencySMS($hazardType, $node->location_name);
+        }
+
         $node->update(['last_ping_at' => now(), 'status' => 'ONLINE']);
 
         return response()->json([
             'message' => 'Data logged successfully',
             'status' => $status
         ], 201);
+    }
+
+    // Helper function to send the actual SMS
+    private function dispatchEmergencySMS($hazard, $location)
+    {
+        $contacts = AlertContact::where('is_active', true)->get();
+        
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_AUTH_TOKEN');
+        $from = env('TWILIO_NUMBER');
+
+        $client = new Client($sid, $token);
+
+        foreach ($contacts as $contact) {
+            try {
+                $client->messages->create(
+                    '+63' . $contact->mobile_number, 
+                    [
+                        'from' => $from,
+                        'body' => "[AEGIS-GUARD ALERT] EMERGENCY: {$hazard} detected at {$location}. Please evacuate immediately."
+                    ]
+                );
+            } catch (\Exception $e) {
+                \Log::error("SMS Failed for {$contact->full_name}: " . $e->getMessage());
+            }
+        }
     }
 }
