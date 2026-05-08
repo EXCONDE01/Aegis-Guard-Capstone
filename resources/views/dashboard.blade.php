@@ -17,8 +17,8 @@
     </div>
     <nav class="flex-1 p-4 space-y-3 mt-4 text-sm">
       <a href="/dashboard" class="block p-3 bg-blue-600/40 border border-blue-500/50 rounded-lg font-semibold text-white shadow-inner">📍 Real-Time Map</a>
-      <a href="#" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300 transition-colors">📜 Hazard History Logs</a>
-      <a href="#" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300 transition-colors">📞 Alert Contacts</a>
+      <a href="/history" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300 transition-colors">📜 Hazard History Logs</a>
+      <a href="/contacts" class="block p-3 hover:bg-slate-800 rounded-lg text-slate-300 transition-colors">📞 Alert Contacts</a>
     </nav>
     <div class="p-5 bg-[#06152D] border-t border-slate-700/50 text-sm">
       <div class="text-slate-400 mb-1 text-[10px] uppercase font-bold tracking-tight">Active Session:</div>
