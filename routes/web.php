@@ -4,31 +4,53 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AuthController;
 
-// Public Routes
+// ==========================================
+// PUBLIC ROUTES
+// ==========================================
+
+// Redirect root domain straight to login
 Route::get('/', function () {
     return redirect('/login');
 });
 
+// Authentication endpoints
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Protected Routes (Must be logged in)
+// ==========================================
+// PROTECTED APPLICATION ROUTES
+// ==========================================
 Route::middleware('auth')->group(function () {
     
-    // Everyone logged in can see the Real-Time Map
+    // Command Center: Real-Time Map (Accessible by all logged-in roles)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // ONLY University Admin (Campus Director) and System Admin can see logs/contacts
+    // ------------------------------------------
+    // CAMPUS SAFETY TOOLS (Director & SysAdmin)
+    // ------------------------------------------
     Route::middleware('role:campus_director,system_admin')->group(function () {
+        // Hazard History Logs
         Route::get('/history', [DashboardController::class, 'history']);
+        
+        // Emergency Alert Contacts
         Route::get('/contacts', [DashboardController::class, 'contacts']);
         Route::post('/contacts', [DashboardController::class, 'storeContact']);
+        
+        // Manual Alert Dispatch System
+        Route::get('/manual-alert', [DashboardController::class, 'manualAlert'])->name('manual.alert');
+        Route::post('/manual-alert/dispatch', [DashboardController::class, 'dispatchAlert'])->name('manual.dispatch');
     });
 
-    // ONLY System Admin can manage hardware nodes
+    // ------------------------------------------
+    // IT INFRASTRUCTURE TOOLS (SysAdmin Only)
+    // ------------------------------------------
     Route::middleware('role:system_admin')->group(function () {
-        // You can create a manageNodes method in DashboardController later
+        // Edge-Node Network Connectivity
         Route::get('/nodes', [DashboardController::class, 'manageNodes']);
+        
+        // Sensor Threshold Calibration
+        Route::get('/thresholds', [DashboardController::class, 'thresholds']);
+        Route::post('/thresholds', [DashboardController::class, 'updateThresholds']);
     });
 });
