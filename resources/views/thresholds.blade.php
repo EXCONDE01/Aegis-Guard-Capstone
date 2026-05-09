@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aegis-Guard | Node Management</title>
+    <title>Aegis-Guard | Threshold Config</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
@@ -32,8 +32,8 @@
       <a href="/contacts" class="flex items-center gap-3 p-3 hover:bg-slate-800/50 rounded-xl text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg> Alert Contacts</a>
       
       <div class="pt-6 pb-2 px-3 text-[10px] text-slate-500 uppercase font-black tracking-widest">IT Infrastructure</div>
-      <a href="/nodes" class="flex items-center gap-3 p-3 bg-indigo-600/10 text-indigo-400 rounded-xl shadow-inner ring-1 ring-indigo-500/20 transition-all"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg> Node Management</a>
-      <a href="/thresholds" class="flex items-center gap-3 p-3 hover:bg-slate-800/50 rounded-xl text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" /></svg> Threshold Config</a>
+      <a href="/nodes" class="flex items-center gap-3 p-3 hover:bg-slate-800/50 rounded-xl text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg> Node Management</a>
+      <a href="/thresholds" class="flex items-center gap-3 p-3 bg-indigo-600/10 text-amber-400 rounded-xl shadow-inner ring-1 ring-amber-500/20 transition-all"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" /></svg> Threshold Config</a>
       <a href="/gateway" class="flex items-center gap-3 p-3 hover:bg-slate-800/50 rounded-xl text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg> Gateway & VLAN</a>
       <a href="/backups" class="flex items-center gap-3 p-3 hover:bg-slate-800/50 rounded-xl text-slate-400 hover:text-white transition-all"><svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg> System Backups</a>
     </nav>
@@ -56,89 +56,67 @@
         <button onclick="toggleSidebar()" class="md:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
         <div>
           <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-            <span>IT Infrastructure</span> / <span class="text-indigo-500">Connectivity</span>
+            <span>IT Infrastructure</span> / <span class="text-amber-500">Thresholds</span>
           </div>
-          <h1 class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">Node Management</h1>
+          <h1 class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">Sensor Calibration Config</h1>
         </div>
-      </div>
-      <div class="hidden md:block text-right mr-4">
-          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Network Status</p>
-          <p class="text-xs font-black text-green-600 flex items-center justify-end gap-1.5 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Secure & Encrypted</p>
       </div>
     </header>
 
-    <main class="p-4 md:p-8 flex-1 overflow-y-auto space-y-8 pb-20">
+    <main class="p-4 md:p-8 flex-1 overflow-y-auto pb-20 flex justify-center items-start">
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200/60 transition-all hover:shadow-md">
-          <div class="text-[10px] uppercase font-black tracking-widest text-slate-400 mb-1">Gateway CPU Load</div>
-          <div class="flex items-end gap-3"><div class="text-3xl font-black text-slate-800">{{ $systemMetrics['cpu_load'] ?? '12%' }}</div></div>
-          <div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden"><div class="bg-indigo-500 h-full rounded-full" style="width: 12%"></div></div>
-        </div>
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200/60 transition-all hover:shadow-md">
-          <div class="text-[10px] uppercase font-black tracking-widest text-slate-400 mb-1">Proxmox RAM Usage</div>
-          <div class="flex items-end gap-3"><div class="text-3xl font-black text-slate-800">{{ $systemMetrics['ram_usage'] ?? '4.2GB' }}</div></div>
-          <div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden"><div class="bg-amber-400 h-full rounded-full" style="width: 45%"></div></div>
-        </div>
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200/60 transition-all hover:shadow-md">
-          <div class="text-[10px] uppercase font-black tracking-widest text-slate-400 mb-1">Overall Uptime</div>
-          <div class="flex items-end gap-3"><div class="text-3xl font-black text-slate-800">{{ $systemMetrics['uptime'] ?? '99.9%' }}</div></div>
-          <div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden"><div class="bg-green-500 h-full rounded-full" style="width: 99%"></div></div>
-        </div>
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200/60 transition-all hover:shadow-md">
-          <div class="text-[10px] uppercase font-black tracking-widest text-slate-400 mb-1">Active Nodes</div>
-          <div class="flex items-end gap-3"><div class="text-3xl font-black text-indigo-600">{{ $systemMetrics['active_nodes'] ?? '3' }}</div></div>
-          <div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden"><div class="bg-indigo-500 h-full rounded-full" style="width: 100%"></div></div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-3xl shadow-sm border border-slate-200/60 overflow-hidden">
-        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
-            <div>
-                <h3 class="font-black text-slate-800 text-lg">ESP32 Edge-Node Fleet</h3>
-                <p class="text-xs text-slate-500 font-medium mt-1">Manage physical hardware endpoints and gateways.</p>
+      <form action="/thresholds" method="POST" class="w-full max-w-4xl bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200/60 mt-4 p-8 md:p-10 space-y-8">
+        @csrf
+        
+        <div>
+            <h2 class="text-lg font-black text-slate-800 border-b border-slate-100 pb-3 mb-5">Temperature Parameters (°C)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[10px] font-black uppercase text-amber-500 tracking-widest mb-1.5">Warning Threshold</label>
+                    <input type="number" name="temp_warning" value="{{ $settings['temp_warning'] ?? 40 }}" class="w-full bg-slate-50 border border-amber-200 rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-amber-500 outline-none">
+                    <p class="text-[10px] text-slate-400 mt-1.5 font-medium">Triggers UI warning alert in Command Center</p>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black uppercase text-red-500 tracking-widest mb-1.5">Critical Threshold</label>
+                    <input type="number" name="temp_critical" value="{{ $settings['temp_critical'] ?? 60 }}" class="w-full bg-red-50 border border-red-200 rounded-xl p-4 text-sm font-bold text-red-700 focus:ring-2 focus:ring-red-500 outline-none">
+                    <p class="text-[10px] text-slate-400 mt-1.5 font-medium">Triggers automated SMS emergency broadcast</p>
+                </div>
             </div>
-            <button class="flex items-center gap-2 px-5 py-2.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-xl text-xs font-bold transition-colors">Deploy Node</button>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse min-w-[800px]">
-            <thead>
-              <tr class="bg-slate-50/50 border-b border-slate-200 text-slate-400 text-[10px] uppercase font-black tracking-widest">
-                <th class="p-6">Hardware MAC / ID</th>
-                <th class="p-6">Assigned Location</th>
-                <th class="p-6">Network Latency</th>
-                <th class="p-6">Current Status</th>
-                <th class="p-6 text-right">Administrative Action</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100">
-              @forelse($nodes as $node)
-                <tr class="hover:bg-slate-50/50 transition-colors group">
-                  <td class="p-6 whitespace-nowrap"><div class="font-mono text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded inline-block border border-indigo-100">{{ $node->hardware_id }}</div></td>
-                  <td class="p-6"><div class="text-sm font-bold text-slate-800">{{ $node->location_name }}</div></td>
-                  <td class="p-6"><div class="text-sm font-bold text-slate-600 flex items-center gap-1.5">14 ms</div></td>
-                  <td class="p-6">
-                    @if($node->status == 'ONLINE' || $node->status == 'ACTIVE' || $node->status == 'SAFE')
-                      <span class="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest border border-green-200">
-                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
-                      </span>
-                    @else
-                      <span class="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest border border-slate-200">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Offline
-                      </span>
-                    @endif
-                  </td>
-                  <td class="p-6 text-right">
-                    <button class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 flex items-center justify-end gap-1.5 ml-auto transition-colors">Reboot Node</button>
-                  </td>
-                </tr>
-              @empty
-                <tr><td colspan="5" class="p-16 text-center text-slate-500">No Infrastructure Found</td></tr>
-              @endforelse
-            </tbody>
-          </table>
+
+        <div>
+            <h2 class="text-lg font-black text-slate-800 border-b border-slate-100 pb-3 mb-5">Smoke / Gas Detection (%)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[10px] font-black uppercase text-amber-500 tracking-widest mb-1.5">Warning Threshold</label>
+                    <input type="number" name="smoke_warning" value="{{ $settings['smoke_warning'] ?? 15 }}" class="w-full bg-slate-50 border border-amber-200 rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-amber-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black uppercase text-red-500 tracking-widest mb-1.5">Critical Threshold</label>
+                    <input type="number" name="smoke_critical" value="{{ $settings['smoke_critical'] ?? 30 }}" class="w-full bg-red-50 border border-red-200 rounded-xl p-4 text-sm font-bold text-red-700 focus:ring-2 focus:ring-red-500 outline-none">
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div>
+            <h2 class="text-lg font-black text-slate-800 border-b border-slate-100 pb-3 mb-5">Hardware Polling Rate</h2>
+            <div>
+                <label class="block text-[10px] font-black uppercase text-slate-500 tracking-widest mb-1.5">ESP32 Request Interval (Seconds)</label>
+                <select name="polling_rate" class="w-full md:w-1/2 bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <option value="2">2 Seconds (High Resource)</option>
+                    <option value="5" selected>5 Seconds (Recommended)</option>
+                    <option value="15">15 Seconds (Power Save)</option>
+                </select>
+                <p class="text-[10px] text-slate-400 mt-2 font-medium italic">Warning: Setting below 5 seconds may cause database lag on Proxmox VE during high load.</p>
+            </div>
+        </div>
+
+        <div class="pt-6 flex justify-end">
+            <button type="submit" class="w-full md:w-auto px-10 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-lg shadow-indigo-600/30 transition-all">
+                Apply System Thresholds
+            </button>
+        </div>
+      </form>
     </main>
   </div>
   <script>function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('mobile-overlay').classList.toggle('hidden'); }</script>

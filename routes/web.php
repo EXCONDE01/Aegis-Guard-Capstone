@@ -50,7 +50,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/nodes', [DashboardController::class, 'manageNodes']);
         
         // Sensor Threshold Calibration
-        Route::get('/thresholds', [DashboardController::class, 'thresholds']);
+        Route::get('/thresholds', function () { 
+            return view('thresholds'); 
+        });
         Route::post('/thresholds', [DashboardController::class, 'updateThresholds']);
+        
+        // Gateway & VLAN Topology Visualizer
+        Route::get('/gateway', function () { 
+            return view('gateway'); 
+        });
+        
+        // System SQL Backups
+        Route::get('/backups', function () { 
+            return view('backups'); 
+        });
     });
 });
