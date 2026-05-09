@@ -3,22 +3,21 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Node;
 use App\Models\EnvironmentalLog;
 use App\Models\AlertContact;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     // ==========================================
-    // UNIVERSITY ADMIN (CAMPUS DIRECTOR) ROUTES
+    // CAMPUS SAFETY METHODS
     // ==========================================
 
-    // 1. Command Center: Real-Time Map
     public function index()
     {
-        // Fetch all nodes and only their single most recent log for the dashboard
+        // Load all nodes with their latest log
         $nodes = Node::with(['logs' => function($query) {
             $query->latest()->take(1);
         }])->get();
@@ -26,97 +25,106 @@ class DashboardController extends Controller
         return view('dashboard', compact('nodes'));
     }
 
-    // 2. Hazard History Logs (Optimized for HTMX)
     public function history()
     {
-        // Uses paginate() instead of get() to prevent database lag on large tables
-        $logs = EnvironmentalLog::with('node')
-                    ->whereIn('status', ['WARNING', 'CRITICAL'])
-                    ->latest()
-                    ->paginate(50);
+        $logs = EnvironmentalLog::with('node')->latest()->paginate(15);
+        $totalAlerts = EnvironmentalLog::count();
         
-        // Fast aggregate count directly from the database
-        $totalAlerts = EnvironmentalLog::whereIn('status', ['WARNING', 'CRITICAL'])->count();
-
         return view('history', compact('logs', 'totalAlerts'));
     }
 
-    // 3. Alert Contacts Directory
     public function contacts()
     {
-        $contacts = AlertContact::latest()->get();
+        $contacts = AlertContact::orderBy('full_name')->get();
         return view('contacts', compact('contacts'));
     }
 
-    // 4. Save a New Emergency Contact
     public function storeContact(Request $request)
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
-            'mobile_number' => 'required|string|max:20',
+            'mobile_number' => 'required|string|max:15',
         ]);
 
         AlertContact::create($validated);
-
-        return redirect('/contacts')->with('success', 'Emergency contact added successfully!');
+        return back()->with('success', 'Emergency contact registered successfully.');
     }
 
-    // 5. Manual Alert Dispatch View
     public function manualAlert()
     {
         return view('manual_alert');
     }
 
-    // 6. Execute Manual Alert
     public function dispatchAlert(Request $request)
     {
-        // In a production scenario, manual Twilio API dispatch logic would trigger here
-        return redirect('/dashboard')->with('success', 'Emergency broadcast dispatched to all registered faculty and staff.');
+        $request->validate(['message' => 'required|string']);
+        
+        // Here you would integrate your SMS Gateway API (like Twilio or Semaphore)
+        // For the capstone, we simulate the success:
+        
+        return redirect('/dashboard')->with('success', 'Priority SMS broadcast dispatched successfully.');
     }
 
+
     // ==========================================
-    // SYSTEM ADMIN (IT BACKEND) ROUTES
+    // IT INFRASTRUCTURE METHODS (System Admin)
     // ==========================================
 
-    // 7. Infrastructure Monitor (Nodes Page)
     public function manageNodes()
     {
+        // 1. Fetch physical hardware from database
         $nodes = Node::all();
-        
-        // Mock data for wireframe metrics (In production, pull from Proxmox/OPNsense API)
+
+        // 2. Generate System Metrics (In production, this would use shell_exec to check Proxmox)
         $systemMetrics = [
-            'cpu_load' => '12%',
-            'ram_usage' => '2.4 GB',
-            'uptime' => '84%',
-            'active_nodes' => $nodes->where('status', 'ONLINE')->count() . ' / ' . $nodes->count()
+            'cpu_load' => rand(10, 25) . '%',
+            'ram_usage' => '4.' . rand(1, 9) . ' GB',
+            'uptime' => '99.' . rand(90, 99) . '%',
+            'active_nodes' => $nodes->where('status', 'ONLINE')->count(),
         ];
 
         return view('nodes', compact('nodes', 'systemMetrics'));
     }
 
-    // 8. View Sensor Threshold Calibration
-    public function thresholds()
+    public function showThresholds()
     {
-        $settings = DB::table('settings')->pluck('value', 'key');
+        // Fetch key-value pairs from the settings table
+        // (Assuming you ran the 2026_05_08_065528_create_settings_table.php migration)
+        $settingsData = DB::table('settings')->pluck('value', 'key')->toArray();
+
+        // Default fallbacks in case the table is empty
+        $settings = [
+            'temp_warning' => $settingsData['temp_warning'] ?? 40,
+            'temp_critical' => $settingsData['temp_critical'] ?? 60,
+            'smoke_warning' => $settingsData['smoke_warning'] ?? 15,
+            'smoke_critical' => $settingsData['smoke_critical'] ?? 30,
+            'polling_rate' => $settingsData['polling_rate'] ?? 5,
+        ];
+
         return view('thresholds', compact('settings'));
     }
 
-    // 9. Save Updated Sensor Thresholds
     public function updateThresholds(Request $request)
     {
-        $data = $request->validate([
-            'temp_critical' => 'required|numeric',
+        // Validate incoming hardware threshold parameters
+        $validated = $request->validate([
             'temp_warning' => 'required|numeric',
+            'temp_critical' => 'required|numeric',
+            'smoke_warning' => 'required|numeric',
             'smoke_critical' => 'required|numeric',
-            'water_critical' => 'required|numeric',
             'polling_rate' => 'required|numeric',
         ]);
 
-        foreach ($data as $key => $value) {
-            DB::table('settings')->where('key', $key)->update(['value' => $value]);
+        // Loop through and update or insert settings into the database
+        foreach ($validated as $key => $value) {
+            DB::table('settings')->updateOrInsert(
+                ['key' => $key],
+                ['value' => $value, 'updated_at' => now()]
+            );
         }
 
-        return redirect('/thresholds')->with('success', 'System safety thresholds applied successfully!');
+        return back()->with('success', 'Sensor thresholds calibrated successfully.');
     }
+    
 }

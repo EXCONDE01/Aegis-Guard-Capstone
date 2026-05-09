@@ -50,9 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/nodes', [DashboardController::class, 'manageNodes']);
         
         // Sensor Threshold Calibration
-        Route::get('/thresholds', function () { 
-            return view('thresholds'); 
-        });
+        Route::get('/thresholds', [DashboardController::class, 'showThresholds']);
         Route::post('/thresholds', [DashboardController::class, 'updateThresholds']);
         
         // Gateway & VLAN Topology Visualizer
